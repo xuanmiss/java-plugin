@@ -9,5 +9,11 @@ import org.pf4j.Plugin;
 public class BasePlugin extends Plugin {
 
 
-    protecte
+    protected PluginContext context;
+
+    public BasePlugin(PluginContext pluginContext) {
+        this.context = pluginContext;
+    }
+
+    public BasePlugin() {}
 }
