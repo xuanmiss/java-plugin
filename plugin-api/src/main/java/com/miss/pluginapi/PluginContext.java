@@ -12,7 +12,6 @@ public class PluginContext {
     
     private final String name;
 
-    private final String configMapName;
 
     private final String version;
 
