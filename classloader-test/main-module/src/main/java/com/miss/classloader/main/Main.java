@@ -6,8 +6,8 @@ public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException {
         System.out.println("Hello world!");
-        invokeCustomerClassMethod("E:\\code_space\\ideaSpace\\github\\xuanmiss\\java-plugin\\classloader-test\\ext1-module\\target\\classes");
-        invokeCustomerClassMethod("E:\\code_space\\ideaSpace\\github\\xuanmiss\\java-plugin\\classloader-test\\ext2-module\\target\\classes");
+        invokeCustomerClassMethod("D:\\code_space\\ideaProjects\\github\\xuanmiss\\java-plugin\\classloader-test\\ext1-module\\target\\classes");
+        invokeCustomerClassMethod("D:\\code_space\\ideaProjects\\github\\xuanmiss\\java-plugin\\classloader-test\\ext2-module\\target\\classes");
 
     }
 
@@ -28,6 +28,24 @@ public class Main {
             defaultClass.getMethod("greeting", String.class).invoke(o, "中国欢迎您！");
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new RuntimeException(e);
+        }
+
+
+        try {
+            Class<?> ext1Class = classLoader.loadClass("com.miss.classloader.ext.Ext1Class");
+            Object o = ext1Class.getDeclaredConstructor().newInstance();
+            ext1Class.getMethod("hello").invoke(o);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+           e.printStackTrace();
+        }
+
+
+        try {
+            Class<?> ext2Class = classLoader.loadClass("com.miss.classloader.ext.Ext2Class");
+            Object o = ext2Class.getDeclaredConstructor().newInstance();
+            ext2Class.getMethod("hello").invoke(o);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
         }
 
     }
